@@ -1,10 +1,25 @@
 import axios from 'axios';
 
-const API_URL = process.env.API_URL;
-const TOKEN = process.env.TOKEN;
+const API_SERVER = process.env.NEXT_PUBLIC_API_SERVER ?? "http://localhost:3001/api";
+const API_CLIENT = process.env.NEXT_PUBLIC_API_CLIENT ?? "http://localhost:3000/api";
+const TOKEN = process.env.NEXT_PUBLIC_TOKEN ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJyb2xlIjoiYWRtaW4iLCJ5ZWFyIjoyMDI0LCJpYXQiOjE3MTYxNTAzMTB9.CCR4m7AciGkL4L59Ea7stbMy7_ltkMSOwNHGVpMnIxs";
 
-export const apiClient = async () => {
-  const instance = axios.create({ baseURL: API_URL });
+const apiServer = async () => {
+	const instance = axios.create({ baseURL: API_SERVER });
+
+	instance.interceptors.request.use(async request => {
+		if (TOKEN) {
+			request.headers.Authorization = `Bearer ${TOKEN}`;
+		}
+
+		return request;
+	});
+
+	return instance;
+};
+
+const apiClient = async () => {
+  const instance = axios.create({ baseURL: API_CLIENT });
 
   instance.interceptors.request.use(async (request: any) => {
     if (TOKEN) {
@@ -29,5 +44,7 @@ export const apiClient = async () => {
   return instance;
 };
 
-
-export default apiClient;
+export {
+  apiClient,
+  apiServer,
+}

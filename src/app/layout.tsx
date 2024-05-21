@@ -6,6 +6,9 @@ import '@/styles/colors.css';
 
 import { siteConfig } from '@/constant/config';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -46,6 +49,7 @@ export default function RootLayout({
             </svg>
           </div>
           {children}
+          <ToastContainer />
         </>
       </body>
     </html>
