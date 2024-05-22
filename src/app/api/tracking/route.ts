@@ -1,9 +1,7 @@
-import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { apiServer } from "@/services/api";
-import { handleApiRouteError } from '@/services/api/error';
 import { apiEndpoints } from "@/constant/endpoints";
+import { apiServer } from "@/services/api";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   try {

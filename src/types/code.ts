@@ -1,4 +1,4 @@
-type HistoryEntry = {
+export type HistoryEntry = {
   id: string;
   title: string;
   description: string;
