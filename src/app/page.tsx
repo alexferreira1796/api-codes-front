@@ -11,7 +11,7 @@ import SectionAboutUs from '@/components/SectionAboutUs/inde';
 import Timeline from '@/components/Timeline';
 import UnderlineLink from '@/components/UnderlineLink';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [code, setCode] = useState<string>('');
 
   const {
